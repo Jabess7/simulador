@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz de 80 Questões</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .question1 {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .question1 h3 {
+      margin: 0 0 10px 0;
+    }
+    .options label {
+      display: block;
+      margin-left: 20px;
+    }
+    #submitBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    .details {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Quiz de 80 Questões</h1>
+<form id="quizForm"></form>
+
+<button id="submitBtn">Enviar</button>
+<div id="result"></div>
+<div id="details" class="details"></div>
+
+<script src="prova1.js"></script>
+<script>
+  const quizForm = document.getElementById('quizForm');
+  const maxQuestions = 80;
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+
+  const selectedQuestions = questions1.slice(0, maxQuestions);
+
+  selectedQuestions.forEach((q, index) => {
+    const div = document.createElement('div');
+    div.className = 'question1';
+    div.innerHTML = `<h3>${index + 1}. ${q.question}</h3>`;
+    const opts = Object.entries(q.options).map(([key, val]) => {
+      return `<label><input type="radio" name="q${index}" value="${key}"> ${key}) ${val}</label>`;
+    }).join('');
+    div.innerHTML += `<div class="options">${opts}</div>`;
+    quizForm.appendChild(div);
+  });
+
+  document.getElementById('submitBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    let score = 0;
+    let detailsHTML = '';
+    
+    selectedQuestions.forEach((q, index) => {
+      const selected = document.querySelector(`input[name="q${index}"]:checked`);
+      const userAnswer = selected ? selected.value : 'nenhuma';
+      const correctAnswer = q.answer;
+
+      if (userAnswer === correctAnswer) {
+        score++;
+        detailsHTML += `<p class="correct">Questão ${index + 1}: Correta ✅</p>`;
+      } else {
+        const correctText = q.options[correctAnswer];
+        const selectedText = selected ? q.options[userAnswer] : 'sem resposta';
+        detailsHTML += `<p class="incorrect">Questão ${index + 1}: Errada ❌<br>Resposta correta: ${correctAnswer}) ${correctText}<br>Sua resposta: ${userAnswer !== 'nenhuma' ? userAnswer + ') ' + selectedText : 'Nenhuma selecionada'}</p>`;
+      }
+    });
+
+    const wrong = selectedQuestions.length - score;
+    document.getElementById('result').textContent = `Você acertou ${score} e errou ${wrong} de ${selectedQuestions.length} questões.`;
+    document.getElementById('details').innerHTML = detailsHTML;
+  });
+</script>
+
+</body>
+</html>
