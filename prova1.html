@@ -21,7 +21,7 @@
       display: block;
       margin-left: 20px;
     }
-    #submitBtn {
+    #submitBtn, #homeBtn, #reloadBtn {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 16px;
@@ -47,6 +47,9 @@
 <form id="quizForm"></form>
 
 <button id="submitBtn">Enviar</button>
+<button id="homeBtn" type="button">Voltar à Página Inicial</button>
+<button id="reloadBtn" type="button">Recarregar Página</button>
+
 <div id="result"></div>
 <div id="details" class="details"></div>
 
@@ -99,6 +102,14 @@
     const wrong = selectedQuestions.length - score;
     document.getElementById('result').textContent = `Você acertou ${score} e errou ${wrong} de ${selectedQuestions.length} questões.`;
     document.getElementById('details').innerHTML = detailsHTML;
+  });
+
+  document.getElementById('homeBtn').addEventListener('click', function() {
+    window.location.href = "index.html"; // Altere para sua página inicial se necessário
+  });
+
+  document.getElementById('reloadBtn').addEventListener('click', function() {
+    location.reload();
   });
 </script>
 

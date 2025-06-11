@@ -1,21 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz de 80 Questões</title>
+  <title>Quiz de 84 Questões</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
     }
-    .question {
+    .question2 {
       margin-bottom: 20px;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-    .question h3 {
+    .question2 h3 {
       margin: 0 0 10px 0;
     }
     .options label {
@@ -24,6 +23,7 @@
     }
     #submitBtn, #homeBtn, #reloadBtn {
       margin-top: 20px;
+      margin-right: 8px;
       padding: 10px 20px;
       font-size: 16px;
     }
@@ -44,7 +44,7 @@
 </head>
 <body>
 
-<h1>Quiz de 80 Questões</h1>
+<h1>Quiz de 84 Questões</h1>
 <form id="quizForm"></form>
 
 <button id="submitBtn">Enviar</button>
@@ -54,10 +54,10 @@
 <div id="result"></div>
 <div id="details" class="details"></div>
 
-<script src="questions_formatted.js"></script>
+<script src="prova2.js"></script>
 <script>
   const quizForm = document.getElementById('quizForm');
-  const maxQuestions = 80;
+  const maxQuestions = 84;
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -66,12 +66,11 @@
     }
   }
 
-
-  const selectedQuestions = questions.slice(0, maxQuestions);
+  const selectedQuestions = questions2.slice(0, maxQuestions);
 
   selectedQuestions.forEach((q, index) => {
     const div = document.createElement('div');
-    div.className = 'question';
+    div.className = 'question2';
     div.innerHTML = `<h3>${index + 1}. ${q.question}</h3>`;
     const opts = Object.entries(q.options).map(([key, val]) => {
       return `<label><input type="radio" name="q${index}" value="${key}"> ${key}) ${val}</label>`;
