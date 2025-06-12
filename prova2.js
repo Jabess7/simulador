@@ -140,7 +140,7 @@ const questions2 = [
       "c": "20",
       "d": "30"
     },
-    "answer": "a"
+    "answer": "b"
   },
   {
     "number": 14,
@@ -173,7 +173,7 @@ const questions2 = [
       "c": "115 degrees",
       "d": "120 degrees"
     },
-    "answer": "b"
+    "answer": "d"
   },
   {
     "number": 17,
@@ -294,7 +294,7 @@ const questions2 = [
       "c": "When it exceeds 150 feet",
       "d": "When it exceeds 175 feet"
     },
-    "answer": "a"
+    "answer": "d"
   },
   {
     "number": 28,
@@ -316,7 +316,7 @@ const questions2 = [
       "c": "24”",
       "d": "30”"
     },
-    "answer": "c"
+    "answer": "a"
   },
   {
     "number": 30,
